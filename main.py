@@ -14,3 +14,5 @@ wcon = soup.find_all('div', class_='mw-body-content', limit=11)
 for tc in wcon:
     main_text = tc.text
 print(main_text)
+
+#test
