@@ -36,4 +36,4 @@ try:
     collection.insert_one(post) 
     print('Stored successfully') 
 except: 
-   print('an error occurred quotes were not stored to db. Try changing the ID number in post') 
+   print('An error occurred and quotes were not stored to db. Try changing the ID number in post') 
