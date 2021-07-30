@@ -4,6 +4,19 @@ import re
 
 from pymongo import MongoClient
 
+session = requests.Session()
+
+
+payload = {'_username':'[YOUR_USERNAME]', 
+          '_password':'[YOUR_PASSWORD]'
+         }
+
+
+s = session.post("https://www.chess.com/login_check", data=payload)
+
+# Navigate to the next page and scrape the data
+s = session.get('https://www.chess.com/today')
+
 url = 'https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE_%E0%A6%89%E0%A6%87%E0%A6%95%E0%A6%BF%E0%A6%AA%E0%A6%BF%E0%A6%A1%E0%A6%BF%E0%A6%AF%E0%A6%BC%E0%A6%BE'
 response = requests.get(url)
 html = response.text
@@ -18,7 +31,8 @@ print(main_text)
 cluster  = MongoClient("mongodb+srv://istiak:12345@cluster0.lqy6z.mongodb.net/test?retryWrites=true&w=majority ") 
 db = cluster["test"] 
 collection = db["test"] 
-post = {"_id": 14, "content": main_text} try: 
+post = {"_id": 14, "content": main_text} 
+try: 
     collection.insert_one(post) 
     print('Stored successfully') 
 except: 
